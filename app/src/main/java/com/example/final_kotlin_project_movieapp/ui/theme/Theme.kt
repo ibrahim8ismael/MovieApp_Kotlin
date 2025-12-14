@@ -11,6 +11,20 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
+private val NetflixColorScheme = darkColorScheme(
+    primary = NetflixRed,
+    onPrimary = NetflixWhite,
+    secondary = NetflixGray,
+    onSecondary = NetflixWhite,
+    tertiary = NetflixLightGray,
+    background = NetflixBlack,
+    onBackground = NetflixWhite,
+    surface = NetflixDarkGray,
+    onSurface = NetflixWhite,
+    surfaceVariant = NetflixGray,
+    onSurfaceVariant = NetflixLightGray
+)
+
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
@@ -37,18 +51,11 @@ private val LightColorScheme = lightColorScheme(
 fun Final_kotlin_project_movieappTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false, // Disabled to use Netflix theme
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
+    // Always use Netflix color scheme for consistent branding
+    val colorScheme = NetflixColorScheme
 
     MaterialTheme(
         colorScheme = colorScheme,
